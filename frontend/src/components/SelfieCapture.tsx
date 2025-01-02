@@ -199,7 +199,7 @@ export default function SelfieCapture({ onCapture }: SelfieCaptureProps) {
         formData.append("file", blob, `selfie_${selfieCount + 1}.jpg`);
 
         const response = await fetch(
-          "https://reality-check-1.onrender.com/capture",
+          `${process.env.NEXT_PUBLIC_API_URL}/capture`,
           {
             method: "POST",
             body: formData,
@@ -283,7 +283,7 @@ export default function SelfieCapture({ onCapture }: SelfieCaptureProps) {
       {previewImage && (
         <div className="mt-6 bg-white p-6 rounded-xl border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
           <h3 className="text-xl font-bold text-purple-600 mb-4">
-            ✨ Your Awesome Selfie ✨
+            ✨ Your look amazing ✨
           </h3>
           <img
             src={previewImage}

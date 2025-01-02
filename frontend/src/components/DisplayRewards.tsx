@@ -99,7 +99,7 @@ export default function DisplayRewards() {
   }
 
   return (
-    <Card className="min-w-screen bg-yellow-50 border-4 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] my-4">
+    <Card className="min-w-screen bg-yellow-50 border-4 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] my-4 font-libre">
       <CardHeader>
         <CardTitle className="text-xl font-bold text-center">
           🏆 Your Points 🏆
@@ -121,8 +121,8 @@ export default function DisplayRewards() {
             </p>
           </div>
         )}
-        <p>
-          <a href="/capture">Watch your friends clicks.</a>
+        <p className="text-center text-xl py-4 text-indigo-700 animate-pulse">
+          <a href="/capture">Checkout Snaps from your friends ➡️ </a>
         </p>
       </CardContent>
     </Card>

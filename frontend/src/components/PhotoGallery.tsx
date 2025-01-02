@@ -1,5 +1,4 @@
 /** @format */
-
 "use client";
 
 import { useState } from "react";
@@ -18,6 +17,12 @@ interface PhotoGalleryProps {
 export default function PhotoGallery({ photos }: PhotoGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentPhoto, setCurrentPhoto] = useState<Photo | null>(null);
+  const [imageLoadError, setImageLoadError] = useState<Record<string, boolean>>(
+    {}
+  );
+
+  const getImageUrl = (photoId: string) =>
+    `${process.env.NEXT_PUBLIC_API_URL}/capture/${photoId}`;
 
   const openLightbox = (photo: Photo) => {
     setCurrentPhoto(photo);
@@ -30,10 +35,10 @@ export default function PhotoGallery({ photos }: PhotoGalleryProps) {
   };
 
   return (
-    <div className="container mx-auto px-8 py-8 font-comic-sans bg-yellow-50">
+    <div className="container mx-auto px-8 py-8 font-comic-sans bg-yellow-50 font-libre">
       <div className="flex flex-col bg-white py-6 px-8 border-4 border-black rounded-3xl shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
         <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-transparent bg-clip-text animate-pulse">
-          Thanks for something!
+          Photo Gallery
         </h1>
       </div>
 
@@ -50,11 +55,11 @@ export default function PhotoGallery({ photos }: PhotoGalleryProps) {
               onClick={() => openLightbox(photo)}
             >
               <Image
-                src={`http://localhost:5000/capture/${photo._id}`}
+                src={getImageUrl(photo._id)}
                 alt={photo.name}
-                width={150}
-                height={150}
+                fill
                 className="object-cover w-full h-full rounded-lg"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div
                 className="absolute inset-0 bg-yellow-400 bg-opacity-0 hover:bg-opacity-20 
@@ -66,9 +71,6 @@ export default function PhotoGallery({ photos }: PhotoGalleryProps) {
                   size={32}
                 />
               </div>
-            </div>
-            <div className="p-2 text-center bg-white text-black font-bold rounded-b-lg text-sm font-libre">
-              Points Gained:
             </div>
           </div>
         ))}
@@ -92,11 +94,12 @@ export default function PhotoGallery({ photos }: PhotoGalleryProps) {
                           shadow-[12px_12px_0_0_rgba(0,0,0,1)]"
             >
               <Image
-                src={`http://localhost:5000/capture/${currentPhoto._id}`}
+                src={getImageUrl(currentPhoto._id)}
                 alt={currentPhoto.name}
                 width={600}
                 height={400}
                 className="rounded-lg object-contain w-full h-auto"
+                priority
               />
               <div className="p-2 text-center bg-white text-black font-bold rounded-b-lg text-2xl font-libre">
                 Points Gained:
