@@ -38,7 +38,7 @@ export default function PhotoGallery({ photos }: PhotoGalleryProps) {
     <div className="container mx-auto px-8 py-8 font-comic-sans bg-yellow-50 font-libre">
       <div className="flex flex-col bg-white py-6 px-8 border-4 border-black rounded-3xl shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
         <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-transparent bg-clip-text animate-pulse">
-          Photo Gallery
+          You look good here :))
         </h1>
       </div>
 
